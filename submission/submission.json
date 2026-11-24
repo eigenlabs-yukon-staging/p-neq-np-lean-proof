@@ -1,8 +1,8 @@
 {
   "version": 1,
-  "title": "Starting submission: rung 0, no checked Lean progress",
+  "title": "Rung 1: polynomial-time decision gives an NP verifier",
   "claims": [
-    "This submission declares rung 0 of the P ≠ NP Lean proof ladder: it contains no Lean file and claims no checked Lean progress toward PEqualNP.Library.P ≠ PEqualNP.Library.NP."
+    "Under the pinned definitions, this submission establishes rung 1, `PEqualNP.Outside.P_subset_NP`, with statement `PEqualNP.Library.P ⊆ PEqualNP.Library.NP`."
   ],
   "experiments": [
     {
@@ -25,7 +25,7 @@
       },
       "initial_inputs": [
         {
-          "theorem": "none"
+          "theorem": "PEqualNP.Outside.P_subset_NP"
         }
       ]
     }
@@ -34,9 +34,9 @@
     {
       "check": "ladder_gate",
       "inputs": {
-        "rung": 0,
-        "theorem": "none",
-        "statement": "none"
+        "rung": 1,
+        "theorem": "PEqualNP.Outside.P_subset_NP",
+        "statement": "PEqualNP.Library.P ⊆ PEqualNP.Library.NP"
       }
     }
   ]
