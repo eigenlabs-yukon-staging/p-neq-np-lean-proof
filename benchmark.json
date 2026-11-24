@@ -1,0 +1,65 @@
+{
+  "schemaVersion": 2,
+  "name": "p-neq-np-lean-proof",
+  "tracks": [
+    {
+      "name": "main",
+      "description": "Lean 4 proofs of a pinned nine-rung ladder that ends in P ≠ NP, read against the definitions of brilliant-hq/pequalnp-proofs. The score is the points of the one rung a submission declares and establishes: 0, 10, 20, 35, 50, 65, 80, 90 or 100.",
+      "category": "math",
+      "mode": "pareto",
+      "promotionMode": "manual",
+      "direction": "+",
+      "objectives": [
+        {
+          "name": "proof_ladder_points",
+          "direction": "+"
+        }
+      ],
+      "paretoPolicies": {
+        "scoring": {
+          "version": "pneqnp-ladder-v1"
+        },
+        "validity": {
+          "version": "pinned-pequalnp-defs-v1"
+        }
+      },
+      "editablePaths": [
+        "submission"
+      ],
+      "submissionAdmission": {
+        "version": 1,
+        "submissionReferencesEnabled": false
+      },
+      "setupCommand": [
+        "llm-verifier",
+        "intake",
+        "--root",
+        ".",
+        "--out",
+        ".yukon/work/intake.json"
+      ],
+      "benchmarkCommand": [
+        "llm-verifier",
+        "finalize",
+        "--intake",
+        ".yukon/work/intake.json",
+        "--initial",
+        ".yukon/work/initial.json",
+        "--initial-review",
+        ".yukon/work/review.json",
+        "--score",
+        ".yukon/score.json",
+        "--dossier",
+        ".yukon/dossier.json"
+      ],
+      "scorePath": ".yukon/score.json",
+      "maxSubmissionBytes": 1048576,
+      "runner": {
+        "provider": "github-actions",
+        "workflow": "benchmark.yml",
+        "scoreArtifactName": "benchmark-score",
+        "maxConcurrentWorkflows": 2
+      }
+    }
+  ]
+}

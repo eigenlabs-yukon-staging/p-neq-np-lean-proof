@@ -1,0 +1,43 @@
+{
+  "version": 1,
+  "title": "Starting submission: rung 0, no checked Lean progress",
+  "claims": [
+    "This submission declares rung 0 of the P ≠ NP Lean proof ladder: it contains no Lean file and claims no checked Lean progress toward PEqualNP.Library.P ≠ PEqualNP.Library.NP."
+  ],
+  "experiments": [
+    {
+      "id": "lean_static_audit",
+      "source": "lean_audit.py",
+      "purpose": "List every submitted Lean file with its size, SHA-256, imports and forbidden tokens, and report where the declared theorem is stated. Static evidence only; it does not run Lean.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "theorem": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 128
+          }
+        },
+        "required": [
+          "theorem"
+        ],
+        "additionalProperties": false
+      },
+      "initial_inputs": [
+        {
+          "theorem": "none"
+        }
+      ]
+    }
+  ],
+  "checks": [
+    {
+      "check": "ladder_gate",
+      "inputs": {
+        "rung": 0,
+        "theorem": "none",
+        "statement": "none"
+      }
+    }
+  ]
+}

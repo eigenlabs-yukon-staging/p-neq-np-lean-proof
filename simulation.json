@@ -1,0 +1,37 @@
+{
+  "initial_results": [
+    {
+      "any_forbidden_token": false,
+      "any_import_outside_mathlib_and_reference": false,
+      "declared_theorem": "none",
+      "declared_theorem_found": [],
+      "lean_file_count": 0,
+      "lean_files": [],
+      "ran_lean": false
+    },
+    {
+      "passed": true,
+      "rung": 0,
+      "proof_ladder_points": 0,
+      "message": "declared theorem and statement match the pinned rung"
+    }
+  ],
+  "initial_decision": {
+    "kind": "judgment",
+    "requests": [],
+    "judgment": {
+      "valid": true,
+      "scores": null,
+      "reason": "The starting submission declares rung 0 and contains no Lean file, so its claim of no checked Lean progress holds as written. The ladder_gate result for rung 0 passed; the verifier derives 0 points. Lean was not run.",
+      "evidence_refs": [
+        "source:proof.md",
+        "source:lean_audit.py",
+        "run:initial:0",
+        "run:initial:1"
+      ],
+      "review_standard": "p-neq-np-lean-proof-review-v1"
+    }
+  },
+  "followup_results": [],
+  "final_decision": null
+}

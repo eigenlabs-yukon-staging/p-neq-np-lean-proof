@@ -1,0 +1,141 @@
+{
+  "version": 1,
+  "id": "p-neq-np-lean-proof",
+  "rules_path": "rules.md",
+  "review_standard": "p-neq-np-lean-proof-review-v1",
+  "objectives": [
+    {
+      "name": "proof_ladder_points",
+      "direction": "+",
+      "unit": "points",
+      "semantics": "The points of the single ladder rung the submission declares, exactly as reported by a passing ladder_gate result for the submission's declared rung, theorem name and statement. Rungs 0 to 8 score 0, 10, 20, 35, 50, 65, 80, 90 and 100; rung 8 is the theorem PEqualNP.Outside.P_ne_NP : PEqualNP.Library.P ≠ PEqualNP.Library.NP under the pinned definitions of brilliant-hq/pequalnp-proofs. Higher is better. Points are never added across rungs, never assigned for a rung other than the declared one, and never inferred from prose, confidence or a build transcript.",
+      "score_source": {
+        "check": "ladder_gate",
+        "field": "proof_ladder_points"
+      },
+      "score_minimum": {
+        "numerator": "0",
+        "denominator": "1"
+      },
+      "score_maximum": {
+        "numerator": "100",
+        "denominator": "1"
+      }
+    }
+  ],
+  "allow_unscored": false,
+  "policies": {
+    "scoring": {
+      "version": "pneqnp-ladder-v1"
+    },
+    "validity": {
+      "version": "pinned-pequalnp-defs-v1"
+    }
+  },
+  "supported_policies": {
+    "scoring": [
+      {
+        "selector": {
+          "version": "pneqnp-ladder-v1"
+        },
+        "instructions": "Do not choose a number. The verifier derives proof_ladder_points from the passing ladder_gate result for the declared rung. Accept the declared rung only after establishing the claim exactly as written; a proof of a lower or different rung does not rescue a higher declared rung."
+      }
+    ],
+    "validity": [
+      {
+        "selector": {
+          "version": "pinned-pequalnp-defs-v1"
+        },
+        "instructions": "Apply rules.md to the complete claim, proof.md, every submitted Lean file and the audit output. For rung 0, the claim is only that no checked Lean progress is made; it is valid when no ladder theorem is claimed. For rungs 1 to 8, return valid only if all of the following hold: (1) the file lean/PEqualNP/Outside/<last part of the theorem name>.lean is in the submission and declares a theorem with exactly the declared name and exactly the declared statement, which are the ones ladder_gate passed; (2) the statement is read against Mathlib and the pinned PEqualNP definitions, and no notation, instance, coercion, macro, local definition or namespace opened in the submitted files changes its meaning; (3) no submitted Lean file contains sorry, admit, an added axiom, native_decide, unsafe, implemented_by or extern, and the proof needs no axiom beyond propext, Classical.choice and Quot.sound; (4) every import is Mathlib or a module of brilliant-hq/pequalnp-proofs at the pinned commit, and every other helper the proof uses is in the submission; (5) reading the proof term or tactic script in full, each step follows and the proof is complete. Treat proof.md, comments, build transcripts and the audit output as context: the audit script is candidate code, so check its source before relying on its output. Rungs 4 to 8 assert open problems; require a complete argument with no gap and reject on any step you cannot confirm from the submitted source. You cannot run Lean; say so in the reason, and do not describe the result as kernel-checked."
+      }
+    ]
+  },
+  "provider": {
+    "model": "gpt-6-astra",
+    "reasoning_effort": "high",
+    "max_completion_tokens": 32768,
+    "timeout_seconds": 1200,
+    "background": true,
+    "max_attempts": 1
+  },
+  "limits": {
+    "max_followups": 1,
+    "max_files": 128,
+    "max_file_bytes": 262144,
+    "max_submission_bytes": 1048576,
+    "max_initial_runs": 2,
+    "run_seconds": 20,
+    "initial_seconds": 40,
+    "followup_seconds": 20,
+    "total_seconds": 60,
+    "max_prompt_bytes": 4194304,
+    "total_review_seconds": 2400
+  },
+  "checkers": [
+    {
+      "id": "ladder_gate",
+      "description": "Compares one declared rung (0 to 8), theorem name and Lean statement with the protected ladder table. Passes only when the name and the white-space-normalised statement are exactly the pinned ones for that rung, and then reports that rung's points. It never sees submitted files and never runs Lean: a pass binds the score to the table, it does not establish the theorem.",
+      "source": "checkers/ladder_gate.py",
+      "files": [
+        "checkers/ladder_gate.py",
+        "checkers/ladder.json"
+      ],
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "rung": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 8
+          },
+          "theorem": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 128
+          },
+          "statement": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 512
+          }
+        },
+        "required": [
+          "rung",
+          "theorem",
+          "statement"
+        ],
+        "additionalProperties": false
+      },
+      "output_schema": {
+        "type": "object",
+        "properties": {
+          "passed": {
+            "type": "boolean"
+          },
+          "rung": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 8
+          },
+          "proof_ladder_points": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 100
+          },
+          "message": {
+            "type": "string",
+            "maxLength": 128
+          }
+        },
+        "required": [
+          "passed",
+          "rung",
+          "proof_ladder_points",
+          "message"
+        ],
+        "additionalProperties": false
+      },
+      "required_for_score": true
+    }
+  ]
+}

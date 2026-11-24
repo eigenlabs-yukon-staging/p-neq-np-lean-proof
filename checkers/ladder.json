@@ -1,0 +1,66 @@
+{
+  "version": "pneqnp-ladder-v1",
+  "reference": {
+    "repository": "https://github.com/brilliant-hq/pequalnp-proofs",
+    "commit": "364123c9dcfa1899438ad3b87670bb55f7c3ddae",
+    "lean_toolchain": "leanprover/lean4:v4.36.0",
+    "mathlib_rev": "fc4f59e577feb1a4956671bc04ac18aaaf8cd842",
+    "allowed_axioms": ["propext", "Classical.choice", "Quot.sound"]
+  },
+  "rungs": [
+    {
+      "rung": 0,
+      "points": 0,
+      "theorem": "none",
+      "statement": "none"
+    },
+    {
+      "rung": 1,
+      "points": 10,
+      "theorem": "PEqualNP.Outside.P_subset_NP",
+      "statement": "PEqualNP.Library.P ⊆ PEqualNP.Library.NP"
+    },
+    {
+      "rung": 2,
+      "points": 20,
+      "theorem": "PEqualNP.Outside.P_ne_NP_iff_SAT_not_mem_P",
+      "statement": "PEqualNP.Library.P ≠ PEqualNP.Library.NP ↔ PEqualNP.Search.SAT ∉ PEqualNP.Library.P"
+    },
+    {
+      "rung": 3,
+      "points": 35,
+      "theorem": "PEqualNP.Outside.P_ne_NP_iff_SAT_not_mem_DTIME",
+      "statement": "PEqualNP.Library.P ≠ PEqualNP.Library.NP ↔ ∀ k : ℕ, PEqualNP.Search.SAT ∉ PEqualNP.Library.DTIME (fun n : ℕ => n ^ k + k)"
+    },
+    {
+      "rung": 4,
+      "points": 50,
+      "theorem": "PEqualNP.Outside.SAT_not_mem_DTIME_1",
+      "statement": "PEqualNP.Search.SAT ∉ PEqualNP.Library.DTIME (fun n : ℕ => n ^ 1 + 1)"
+    },
+    {
+      "rung": 5,
+      "points": 65,
+      "theorem": "PEqualNP.Outside.SAT_not_mem_DTIME_2",
+      "statement": "PEqualNP.Search.SAT ∉ PEqualNP.Library.DTIME (fun n : ℕ => n ^ 2 + 2)"
+    },
+    {
+      "rung": 6,
+      "points": 80,
+      "theorem": "PEqualNP.Outside.SAT_not_mem_DTIME_3",
+      "statement": "PEqualNP.Search.SAT ∉ PEqualNP.Library.DTIME (fun n : ℕ => n ^ 3 + 3)"
+    },
+    {
+      "rung": 7,
+      "points": 90,
+      "theorem": "PEqualNP.Outside.SAT_not_mem_P",
+      "statement": "PEqualNP.Search.SAT ∉ PEqualNP.Library.P"
+    },
+    {
+      "rung": 8,
+      "points": 100,
+      "theorem": "PEqualNP.Outside.P_ne_NP",
+      "statement": "PEqualNP.Library.P ≠ PEqualNP.Library.NP"
+    }
+  ]
+}

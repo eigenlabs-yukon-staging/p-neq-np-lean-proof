@@ -1,0 +1,38 @@
+[
+  {
+    "id": "rung-0-baseline",
+    "check": "ladder_gate",
+    "inputs": {"rung": 0, "theorem": "none", "statement": "none"},
+    "expected": {"passed": true, "rung": 0, "proof_ladder_points": 0}
+  },
+  {
+    "id": "rung-1-containment",
+    "check": "ladder_gate",
+    "inputs": {"rung": 1, "theorem": "PEqualNP.Outside.P_subset_NP", "statement": "PEqualNP.Library.P ⊆ PEqualNP.Library.NP"},
+    "expected": {"passed": true, "rung": 1, "proof_ladder_points": 10}
+  },
+  {
+    "id": "rung-8-target-with-extra-white-space",
+    "check": "ladder_gate",
+    "inputs": {"rung": 8, "theorem": "PEqualNP.Outside.P_ne_NP", "statement": "PEqualNP.Library.P  ≠\n  PEqualNP.Library.NP"},
+    "expected": {"passed": true, "rung": 8, "proof_ladder_points": 100}
+  },
+  {
+    "id": "rung-8-claimed-with-rung-1-statement",
+    "check": "ladder_gate",
+    "inputs": {"rung": 8, "theorem": "PEqualNP.Outside.P_ne_NP", "statement": "PEqualNP.Library.P ⊆ PEqualNP.Library.NP"},
+    "expected": {"passed": false, "proof_ladder_points": 0}
+  },
+  {
+    "id": "rung-7-wrong-theorem-name",
+    "check": "ladder_gate",
+    "inputs": {"rung": 7, "theorem": "PEqualNP.Outside.P_ne_NP", "statement": "PEqualNP.Search.SAT ∉ PEqualNP.Library.P"},
+    "expected": {"passed": false, "proof_ladder_points": 0}
+  },
+  {
+    "id": "rung-5-claimed-with-rung-4-statement",
+    "check": "ladder_gate",
+    "inputs": {"rung": 5, "theorem": "PEqualNP.Outside.SAT_not_mem_DTIME_2", "statement": "PEqualNP.Search.SAT ∉ PEqualNP.Library.DTIME (fun n : ℕ => n ^ 1 + 1)"},
+    "expected": {"passed": false, "proof_ladder_points": 0}
+  }
+]
