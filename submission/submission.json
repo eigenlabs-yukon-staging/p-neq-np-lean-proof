@@ -1,8 +1,8 @@
 {
   "version": 1,
-  "title": "Starting submission: rung 0, no checked Lean progress",
+  "title": "Rung 3: deterministic time formulation of P versus NP",
   "claims": [
-    "This submission declares rung 0 of the P ≠ NP Lean proof ladder: it contains no Lean file and claims no checked Lean progress toward PEqualNP.Library.P ≠ PEqualNP.Library.NP."
+    "Under the pinned definitions, rung 3 is established by theorem PEqualNP.Outside.P_ne_NP_iff_SAT_not_mem_DTIME : PEqualNP.Library.P ≠ PEqualNP.Library.NP ↔ ∀ k : ℕ, PEqualNP.Search.SAT ∉ PEqualNP.Library.DTIME (fun n : ℕ => n ^ k + k)."
   ],
   "experiments": [
     {
@@ -25,7 +25,7 @@
       },
       "initial_inputs": [
         {
-          "theorem": "none"
+          "theorem": "PEqualNP.Outside.P_ne_NP_iff_SAT_not_mem_DTIME"
         }
       ]
     }
@@ -34,9 +34,9 @@
     {
       "check": "ladder_gate",
       "inputs": {
-        "rung": 0,
-        "theorem": "none",
-        "statement": "none"
+        "rung": 3,
+        "theorem": "PEqualNP.Outside.P_ne_NP_iff_SAT_not_mem_DTIME",
+        "statement": "PEqualNP.Library.P ≠ PEqualNP.Library.NP ↔ ∀ k : ℕ, PEqualNP.Search.SAT ∉ PEqualNP.Library.DTIME (fun n : ℕ => n ^ k + k)"
       }
     }
   ]
